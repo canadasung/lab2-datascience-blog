@@ -1,0 +1,13 @@
+---
+title: "My New Analysis"
+description: "A short summary of what this post is about."
+author: "Your Name"
+date: "2026-01-14"
+categories: [code, analysis, python]
+image: "image.jpg"
+draft: false
+---
+
+## Introduction
+
+Write your content here! You can use Python or R code chunks as usual.
