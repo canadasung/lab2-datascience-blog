@@ -107,6 +107,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -205,18 +234,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="evaluation-steps" class="level2">
 <h2 class="anchored" data-anchor-id="evaluation-steps">Evaluation Steps</h2>
-<p>The major steps are as follows: #### Step 1 Identify the “cohort.” A cohort could be a group of people who made purchases through the same marketing campaign or event, or a group of people who subscribed to a service within a certain time period (e.g., the same day or the same month).</p>
+<section id="step-1" class="level4">
+<h4 class="anchored" data-anchor-id="step-1">Step 1</h4>
+<p>Identify the “cohort.” A cohort could be a group of people who made purchases through the same marketing campaign or event, or a group of people who subscribed to a service within a certain time period (e.g., the same day or the same month).</p>
 <p>Depending on your business, the challenge is that people in different cohorts have different purchasing or revisiting cycles, so defining your cohort is an important first step. Usually, cohorts are either event‑based or time‑based, but sometimes additional categorical variables are added to narrow down the groups. Keep in mind that the more variables you include, the more complex the SQL code and results will become.</p>
 <p>Using the gaming industry as an example, we usually use player signup date as the cohort base (time‑based). Each day, a number of people join the game, and each day becomes a different cohort. Retention rate is evaluated day by day. It is also possible to add other variables—for example, which countries the cohorts belong to, which marketing campaigns they came from, or whether they are payers or non‑payers. These additional variables make the SQL code more complex to write and read. (I will explain this later in the SQL section.)</p>
+</section>
 <section id="step-2" class="level4">
 <h4 class="anchored" data-anchor-id="step-2">Step 2</h4>
 <p>Understand the math formula, which is straightforward:</p>
+<p><span class="math display">\[ Retention\ Rate = \frac{\text{number of&nbsp;people&nbsp;in&nbsp;the&nbsp;same&nbsp;cohort&nbsp;who&nbsp;revisited&nbsp;during&nbsp;the&nbsp;period}}{\text{number of&nbsp;people&nbsp;in&nbsp;the&nbsp;same&nbsp;cohort&nbsp;at&nbsp;the&nbsp;start&nbsp;of&nbsp;the&nbsp;period}} \times 100 \]</span></p>
 <p>Retention&nbsp;Rate = ( number of&nbsp;people&nbsp;in&nbsp;the&nbsp;same&nbsp;cohort&nbsp;who&nbsp;revisited&nbsp;during&nbsp;the&nbsp;period / number of&nbsp;people&nbsp;in&nbsp;the&nbsp;same&nbsp;cohort&nbsp;at&nbsp;the&nbsp;start&nbsp;of&nbsp;the&nbsp;period) × 100</p>
 <p>Although the formula is simple, the challenge is calculating the rate for each cohort from its initial day through each of its future days. For example, on July 1st, we have 100 people joining the business, usually labeled as day‑1. (Note that some people use day‑0 for the very first day, which is assumed to have a 100% rate as the base. This is often omitted in charts. If you see a day‑1 value below 100% in someone else’s work, it usually means they used day‑0 as the starting label. It’s a personal preference; I prefer day‑1.)</p>
 <p>On the following day, July 2nd, 50 people from the same cohort revisit. This is labeled as day‑2, and the retention rate is 50/100 = 50%.</p>
 <p>On July 3rd, 20 people revisit, labeled as day‑3, giving a retention rate of 20/100 = 20%. And so on for future days. Keep in mind that this is always referring to the same cohort that joined on July 1st. A new cohort joins on July 2nd, and July 3rd becomes that cohort’s day‑2, and so forth. As each new day is added, the volume of data and calculations increases quickly.</p>
 <p>By the way, “churn rate” is the reverse of retention rate, calculated as:</p>
-<p>Churn&nbsp;Rate = 1 − Retention&nbsp;Rate</p>
+<p><span class="math display">\[ \text{Churn Rate} = 1 - \text{Retention Rate} \]</span></p>
 <p>Churn rate is another common term you will encounter when working with retention metrics.</p>
 </section>
 <section id="step-3" class="level4">
