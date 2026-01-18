@@ -15,14 +15,14 @@ Retention rate is one of the major KPI metrics in many businesses. The concept i
 ## Evaluation Steps
 
 The major steps are as follows:
-- Step 1
+#### Step 1
 Identify the “cohort.” A cohort could be a group of people who made purchases through the same marketing campaign or event, or a group of people who subscribed to a service within a certain time period (e.g., the same day or the same month).
 
 Depending on your business, the challenge is that people in different cohorts have different purchasing or revisiting cycles, so defining your cohort is an important first step. Usually, cohorts are either event‑based or time‑based, but sometimes additional categorical variables are added to narrow down the groups. Keep in mind that the more variables you include, the more complex the SQL code and results will become.
 
 Using the gaming industry as an example, we usually use player signup date as the cohort base (time‑based). Each day, a number of people join the game, and each day becomes a different cohort. Retention rate is evaluated day by day. It is also possible to add other variables—for example, which countries the cohorts belong to, which marketing campaigns they came from, or whether they are payers or non‑payers. These additional variables make the SQL code more complex to write and read. (I will explain this later in the SQL section.)
 
-- Step 2
+#### Step 2
 Understand the math formula, which is straightforward:
 
 Retention Rate = ( number of people in the same cohort who revisited during the period
@@ -41,24 +41,21 @@ Churn Rate = 1 − Retention Rate
 
 Churn rate is another common term you will encounter when working with retention metrics.
 
-- Step 3
+#### Step 3
 From the results in Step 2, we can use visualization tools to create charts. In my experience, retention charts are not easy to interpret at first glance. You will need practice to get used to them, and you will often need to teach stakeholders how to read them as well. There are three major chart types commonly used to display retention rate. All three are popular, but each has its downsides, which I will demonstrate below.
 
 
 ## Charts
 
-![Caption text](path/to/your/image.png)
-Source: https://help.peelinsights.com/docs/retention-rate-vs-repurchase-rate-1
+![Retention vs Repurchase. Source: [Peelinsights](https://help.peelinsights.com/docs/retention-rate-vs-repurchase-rate-1)](step_chart.webp){cap-location="margin"}
 
 Based on the calculation in Step 2, the first popular chart (above) is a stair‑like tabular chart. Each row represents a cohort, and each column and value represents the retention rate for each subsequent day or period. Heat‑map colours are usually applied to make the numbers easier to read; without them, the table can look cluttered due to the volume of data.
 
-![Caption text](path/to/your/image.png)
-Source: https://segment.com/growth-center/customer-retention/rate/
+![Customer Retention. Source: [Segment](https://segment.com/growth-center/customer-retention/rate/)](stacked_line_chart.webp){cap-location="margin"}
 
 The second chart (above) is a downward‑sloping line chart derived from the tabular format. Each line represents a cohort and its retention rate across each following day or defined period. Note that in this example, cohorts are defined by app genre (event‑based) rather than by join date. This highlights the importance of clearly defining your cohort before running the analysis. The downside of this chart is that as more cohorts accumulate, the number of lines increases and they begin to overlap, making the chart difficult to interpret. This is where the third chart becomes useful.
 
-![Caption text](path/to/your/image.png)
-Source: https://www.linkedin.com/pulse/how-measure-retention-173tech/
+![How to Measure Retention 2023. Source: [LinkedIn](https://www.linkedin.com/pulse/how-measure-retention-173tech/)](line_chart.webp){cap-location="margin"}
 
 The third chart (above) provides insight into long‑term performance based on the day‑n line selected in the visualization design. I personally prefer this chart when presenting retention information to stakeholders. Each line represents a specific day‑n metric. For example, the blue line is Day‑1, the red line (Week 1) is Day‑7, and the green line (Month 1) is Day‑30. The blue line shows Day‑1 retention rates across different cohorts. Vertically, each point on the x‑axis corresponds to a cohort. Using 2020–03 as an example, the blue point at roughly 80% represents its Day‑1 retention rate, the red point at about 65% represents its Day‑7 rate, and the green point at about 55% represents its Day‑30 rate. In other words, the vertical stack of points for a given cohort shows its retention performance across different time intervals.
 
@@ -68,7 +65,7 @@ From this chart, we can reasonably conclude that the 2020–03 cohort is healthi
 I usually structure the SQL queries into two sections. Section 1 builds the base table that contains all necessary variables, and this table is typically saved as a temporary table for later use. This allows me to experiment with different query setups in Section 2 without rerunning the Section 1 queries and consuming unnecessary read resources. However, if you already know exactly what you need, you can combine the queries from all sections into a single script.
 
 ### Section 1
-```
+```sql
 -- save the result to a table for later use
 truncate table `mid_retention_data`;
 insert into `mid_retention_data`
@@ -127,7 +124,7 @@ inner join join_date as b on a.user_id = b.user_id
 I have added additional variables such as campaign_type, country, and payer_flag. These will increase the complexity in the following sections. However, because the results are saved to a middle table, I can include as many potentially useful categorical variables as needed and choose only the relevant ones in Section 2. At this stage, after running the short set of queries below, you could technically export the data to visualization tools like Tableau or Power BI—but there is a pitfall to be aware of.
 
 ### Section 2
-```
+```sql
 with base_table as (
     select distinct user_id
         , user_join_date -- represent cohorts
