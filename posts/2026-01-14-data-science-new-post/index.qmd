@@ -47,15 +47,15 @@ From the results in Step 2, we can use visualization tools to create charts. In 
 
 ## Charts
 
-![Retention vs Repurchase. Source: [Peelinsights](https://help.peelinsights.com/docs/retention-rate-vs-repurchase-rate-1)](step_chart.webp){cap-location="margin"}
+![Retention vs Repurchase. Source: [Peelinsights](https://help.peelinsights.com/docs/retention-rate-vs-repurchase-rate-1)](step_chart.jpg){cap-location="margin"}
 
 Based on the calculation in Step 2, the first popular chart (above) is a stair‑like tabular chart. Each row represents a cohort, and each column and value represents the retention rate for each subsequent day or period. Heat‑map colours are usually applied to make the numbers easier to read; without them, the table can look cluttered due to the volume of data.
 
-![Customer Retention. Source: [Segment](https://segment.com/growth-center/customer-retention/rate/)](stacked_line_chart.webp){cap-location="margin"}
+![Customer Retention. Source: [Segment](https://segment.com/growth-center/customer-retention/rate/)](stacked_line_chart.jpg){cap-location="margin"}
 
 The second chart (above) is a downward‑sloping line chart derived from the tabular format. Each line represents a cohort and its retention rate across each following day or defined period. Note that in this example, cohorts are defined by app genre (event‑based) rather than by join date. This highlights the importance of clearly defining your cohort before running the analysis. The downside of this chart is that as more cohorts accumulate, the number of lines increases and they begin to overlap, making the chart difficult to interpret. This is where the third chart becomes useful.
 
-![How to Measure Retention 2023. Source: [LinkedIn](https://www.linkedin.com/pulse/how-measure-retention-173tech/)](line_chart.webp){cap-location="margin"}
+![How to Measure Retention 2023. Source: [LinkedIn](https://www.linkedin.com/pulse/how-measure-retention-173tech/)](line_chart.jpg){cap-location="margin"}
 
 The third chart (above) provides insight into long‑term performance based on the day‑n line selected in the visualization design. I personally prefer this chart when presenting retention information to stakeholders. Each line represents a specific day‑n metric. For example, the blue line is Day‑1, the red line (Week 1) is Day‑7, and the green line (Month 1) is Day‑30. The blue line shows Day‑1 retention rates across different cohorts. Vertically, each point on the x‑axis corresponds to a cohort. Using 2020–03 as an example, the blue point at roughly 80% represents its Day‑1 retention rate, the red point at about 65% represents its Day‑7 rate, and the green point at about 55% represents its Day‑30 rate. In other words, the vertical stack of points for a given cohort shows its retention performance across different time intervals.
 
