@@ -306,7 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co">-- we can use order by to briefly check if results meet expectation</span></span>
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co">-- order by b.user_id, a.login_date</span></span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>I have added additional variables such as campaign_type, country, and payer_flag. These will increase the complexity in the following sections. However, because the results are saved to a middle table, I can include as many potentially useful categorical variables as needed and choose only the relevant ones in Section 2. At this stage, after running the short set of queries below, you could technically export the data to visualization tools like Tableau or Power BI—but there is a pitfall to be aware of.</p>
+<p>I have added additional variables such as campaign_type, country, and payer_flag. These will increase the complexity in the following sections. However, because in Section 1, the queries only needs to be run once and the results are saved to a middle table, I can include as many potentially useful categorical variables as needed in Section 1, and choose only the relevant ones in Section 2, or play around different variables and check the outcomes.</p>
 </section>
 <section id="section-2" class="level3">
 <h3 class="anchored" data-anchor-id="section-2">Section 2</h3>
@@ -405,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>I hope these points help you analyze retention rate more effectively. I recommend testing with your own data—you’ll gain a much clearer understanding when working with your specific use case.</p>
+<p>I hope these points help you analyze retention rates more effectively and with greater confidence. Retention analysis can initially feel complex, but breaking it down into clear steps, visualizations, and structured SQL logic makes the process much more manageable. I strongly encourage testing these methods with your own data, as real‑world use cases often reveal insights that theoretical examples cannot. As you gain experience, you will also become more comfortable interpreting retention charts and explaining them to stakeholders. Ultimately, mastering retention analysis provides a strong foundation for understanding user behavior and making data‑driven business decisions.</p>
 
 
 </section>
