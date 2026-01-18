@@ -14,7 +14,6 @@ Retention rate is one of the major KPI metrics in many businesses. The concept i
 
 ## Evaluation Steps
 
-The major steps are as follows:
 #### Step 1
 Identify the “cohort.” A cohort could be a group of people who made purchases through the same marketing campaign or event, or a group of people who subscribed to a service within a certain time period (e.g., the same day or the same month).
 
@@ -24,6 +23,8 @@ Using the gaming industry as an example, we usually use player signup date as th
 
 #### Step 2
 Understand the math formula, which is straightforward:
+
+$$ Retention\ Rate = \frac{\text{number of people in the same cohort who revisited during the period}}{\text{number of people in the same cohort at the start of the period}} \times 100 $$
 
 Retention Rate = ( number of people in the same cohort who revisited during the period
 / 
@@ -37,7 +38,7 @@ On July 3rd, 20 people revisit, labeled as day‑3, giving a retention rate of 2
 
 By the way, “churn rate” is the reverse of retention rate, calculated as:
 
-Churn Rate = 1 − Retention Rate
+$$ \text{Churn Rate} = 1 - \text{Retention Rate} $$
 
 Churn rate is another common term you will encounter when working with retention metrics.
 
